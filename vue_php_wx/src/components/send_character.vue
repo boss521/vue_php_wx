@@ -1,6 +1,6 @@
 <template>
 	<div class="send_character">
-		<textarea name="contents" class="contents" rows="" cols="" placeholder="输入想说的话。。"></textarea>
+		<textarea class="contents" v-model="contents" placeholder="输入想说的话。。"></textarea>
 		<hr />
 		<li class="circle_of_friends">
 			<span class="addr"></span>
@@ -20,16 +20,25 @@
 </template>
 
 <script>
-	import axios from 'axios'
 	export default {
 		name: 'send_character',
-		methods:{
-			send_out:function(){
-				console.log(axios)
-				axios.post('../actions/send_character.php').then((response)=>{
-					console.log("请求成功");
-				}),(error)=>{
-					alert('请求失败');
+		data() {
+			return {
+				contents: ""
+			}
+		},
+		methods: {
+			send_out: function() {
+				var that = this;
+				if(this.contents == '' || this.contents == null) {
+					alert('不能发送空内容')
+				} else {
+					this.$http.get('http://192.168.1.95/dashboard/sunyuan/actions/send_character.php?contents=' + that.contents).then((response) => {
+						that.contents = '';
+						console.log(response.data);
+					}, (response) => {
+						alert('服务器请求失败');
+					});
 				}
 			}
 		}
