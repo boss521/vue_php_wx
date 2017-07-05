@@ -48,7 +48,7 @@
 </script>
 
 <style>
-	@import url("../static/iconfont/iconfont.css");
+	@import url("../static/fonts/iconfont.css");
 	html,
 	body,
 	ul,
