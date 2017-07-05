@@ -64,6 +64,11 @@
 		},
 		mounted: function() {
 			//this.$parent.footer=0
+			this.$http.get('http://192.168.1.95/dashboard/sunyuan/actions/get_friend_actives.php').then((response) => {
+				console.log(response.data)
+			}, (response) => {
+				alert("获取数据失败")
+			})
 		}
 	}
 </script>
