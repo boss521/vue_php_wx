@@ -27,9 +27,9 @@
 			send_out:function(){
 				console.log(axios)
 				axios.post('../actions/send_character.php').then((response)=>{
-					console.log("ok"+response);
+					console.log("请求成功");
 				}),(error)=>{
-					alert('错了');
+					alert('请求失败');
 				}
 			}
 		}
