@@ -35,7 +35,7 @@
 		data() {
 			return {
 				inde: 1,
-				footer:1
+				footer:0
 			}
 		},
 		methods: {
