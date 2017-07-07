@@ -4,6 +4,6 @@ header('Access-Control-Allow-Origin:*');
 @$conn = new mysqli('localhost', 'root', '0404', 'weixin');
 //	检测链接
 if ($conn -> connect_error) {
-	die('连接数据库失败');
+	die('连接数据库失败！');
 }
 ?>
