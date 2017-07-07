@@ -1,19 +1,19 @@
 <template>
-	<div class="register">
+	<div class="login">
 		<div class="user_password">
 			<label for="user">账号</label><input type="input" v-model="user" name="user" id="user" placeholder="请输入账号" />
 		</div>
 		<div class="user_password">
 			<label for="password">密码</label><input type="input" v-model="psw" name="password" id="password" placeholder="请输入密码" />
 		</div>
-		<div class="register_btn" :class="{green_bg:can_sub==1}" @click="register">注册</div>
-		<p class="agreement">轻触上面的“注册”按钮，表示你愿意服从于我</p>
+		<div class="register_btn" :class="{green_bg:can_sub==1}" @click="register">登录</div>
+		<p class="agreement">欢迎登录</p>
 	</div>
 </template>
 
 <script>
 	export default {
-		name: "register",
+		name: "login",
 		data() {
 			return {
 				user: '',
@@ -24,8 +24,9 @@
 			can_sub: function() {
 				if(this.user != '' && this.psw != '') {
 					return 1;
+				} else {
+					return 0;
 				}
-				return 0;
 			}
 		},
 		methods: {
@@ -41,43 +42,22 @@
 					this.can_sub = 1;
 					$.ajax({
 						type: 'post',
-						url: "http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/register.php",
+						url: "http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/login.php",
 						data: {
 							"user": that.user,
 							"password": that.psw
 						},
 						success: function(d) {
-							alert("注册成功");
-							that.$router.push({
-								path: "/login"
-							});
-							console.log(d);
-							console.log("成功传到后台")
+							if(d == 1) {
+								that.$router.push({
+									path: "/set_name_head"
+								});
+							} else {
+								alert("账号或者密码错误")
+							}
+
 						}
 					});
-					/*
-					 * axios的post请求默认json格式，不知道怎么改
-					 * */
-					//this.$http.post('http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/register.php', {
-					//	headers: {
-					//		'Content-Type': 'application/x-www-form-urlencoded'
-					//	},
-					//	data: {
-					//		"user": that.user,
-					//		"password": that.psw
-					//	}
-					//}).then((response) => {
-					//	that.contents = '';
-					//	console.log(response);
-					//}, (response) => {
-					//	alert('服务器请求失败');
-					//});
-					/*
-					 * 
-					 * 用jQuery
-					 * 的ajax
-					 * 
-					 * */
 				}
 			}
 		}
@@ -85,7 +65,7 @@
 </script>
 
 <style scoped>
-	.register {
+	.login {
 		width: 100%;
 		background: #FFFFFF;
 		box-sizing: border-box;

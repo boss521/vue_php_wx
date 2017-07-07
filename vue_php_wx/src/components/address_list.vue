@@ -19,7 +19,7 @@
 			}
 		},
 		mounted: function() {
-			//this.$parent.footer=0
+			this.$parent.footer=0
 			var that = this;
 			this.$http.get('http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/get_address_list.php').then((response) => {
 				var get_data = response.data;
