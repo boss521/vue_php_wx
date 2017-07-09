@@ -33,9 +33,10 @@
 				if(this.contents == '' || this.contents == null) {
 					alert('不能发送空内容')
 				} else {
-					this.$http.get('http://127.0.0.1/dashboard/moniweixin/vue_php_wx/src/actions/send_character.php?contents='+ that.contents).then((response) => {
+					this.$http.get('http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/send_character.php?contents='+ that.contents).then((response) => {
 						that.contents = '';
 						console.log(response.data);
+						that.$router.push('/friends');
 					}, (response) => {
 						alert('服务器请求失败');
 					});

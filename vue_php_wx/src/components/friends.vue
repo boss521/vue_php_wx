@@ -10,11 +10,11 @@
 		<ul class="actives" v-for="active in actives">
 			<li class="friends_actives">
 				<div class="mini">
-					<img :src="active.pyq_img_url" alt="">
+					<img :src="active.header" alt="">
 				</div>
-				<div class="name">{{active.name}}</div>
+				<div class="name">{{active.send_id}}</div>
 				<div class="content">{{active.contents}}</div>
-				<address>{{active.it_time}}</address>
+				<address>{{active.send_time}}</address>
 			</li>
 		</ul>
 	</div>
@@ -30,42 +30,21 @@
 					self_name: 'Zone'
 				},
 				actives: [{
-					name: '贾玲',
-					pyq_img_url: require('../assets/images/3.jpg'),
-					contents: "我是搞笑达人--->贾玲",
-					it_time: '2017/02/02 12:12:20'
-
-				}, {
-					name: '巩俐',
-					pyq_img_url: require('../assets/images/head2.jpg'),
-					contents: "我是国际巨星 巩俐",
-					it_time: '2017/02/02 12:12:20'
-
-				}, {
-					name: '温馨',
-					pyq_img_url: require('../assets/images/head4.jpg'),
-					contents: "我是大美女",
-					it_time: '2017/02/02 12:12:20'
-
-				}, {
-					name: '王老五',
-					pyq_img_url: require('../assets/images/head5.jpg'),
-					contents: "我是钻石王老五",
-					it_time: '2017/02/02 12:12:20'
-
-				}, {
-					name: '周杰伦',
-					pyq_img_url: require('../assets/images/head6.jpg'),
-					contents: "我是周杰伦，谢谢",
-					it_time: '2017/02/02 12:12:20'
+					//					id:"",
+					//					send_id: '贾玲',
+					//					pyq_img_url: require('../assets/images/3.jpg'),
+					//					contents: "我是搞笑达人--->贾玲",
+					//					send_time: '2017/02/02 12:12:20'
 
 				}]
 			}
 		},
 		mounted: function() {
 			//this.$parent.footer=0
-			this.$http.get('http://192.168.1.95/dashboard/sunyuan/actions/get_friend_actives.php').then((response) => {
-				console.log(response.data)
+			var that = this;
+			this.$http.get('http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/get_friend_actives.php').then((response) => {
+				var get_data = response.data;
+				that.actives = get_data;
 			}, (response) => {
 				alert("获取数据失败")
 			})
@@ -82,6 +61,7 @@
 		height: 5.2rem;
 		width: 6.4rem;
 		background: url(../assets/images/wall.jpg)center no-repeat;
+		background-size: 100% 100%;
 		position: relative;
 		margin-bottom: 1.2rem;
 	}
@@ -127,7 +107,7 @@
 		height: .5rem;
 		line-height: .5rem;
 		text-align: left;
-		width: 82%;
+		width: 83%;
 		float: right;
 		font-size: .2rem;
 	}

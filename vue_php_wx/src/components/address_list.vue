@@ -2,7 +2,7 @@
 	<div class="address_list">
 		<ul class="nearlist" v-for="info in infos">
 			<li class="list">
-				<img class="head" :src="info.img_url" />
+				<img class="head" :src="info.header" />
 				<div class="name_summary">{{info.name}}</div>
 			</li>
 		</ul>
@@ -15,33 +15,18 @@
 		name: "address_list",
 		data() {
 			return {
-				msg: 'Welcome to Your Vue.js App',
-				infos: [{
-					img_url: require("../assets/images/head2.jpg"),
-					name: '郑成功',
-				}, {
-					img_url: require("../assets/images/head1.jpg"),
-					name: '潘志豪',
-				}, {
-					img_url: require("../assets/images/head6.jpg"),
-					name: '刘德华',
-				}, {
-					img_url: require("../assets/images/head4.jpg"),
-					name: '章子怡',
-				}, {
-					img_url: require("../assets/images/head5.jpg"),
-					name: '李连杰',
-				}, {
-					img_url: require("../assets/images/head3.jpg"),
-					name: '玛丽莲梦露',
-				}, {
-					img_url: require("../assets/images/head1.jpg"),
-					name: '费玉清',
-				}, {
-					img_url: require("../assets/images/head4.jpg"),
-					name: '周杰伦',
-				}]
+				infos: []
 			}
+		},
+		mounted: function() {
+			this.$parent.footer=0
+			var that = this;
+			this.$http.get('http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/get_address_list.php').then((response) => {
+				var get_data = response.data;
+				that.infos = get_data;
+			}, (response) => {
+				alert("获取数据失败")
+			})
 		}
 	}
 </script>
