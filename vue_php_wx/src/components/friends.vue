@@ -42,7 +42,7 @@
 		mounted: function() {
 			//this.$parent.footer=0
 			var that = this;
-			this.$http.get('http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/get_friend_actives.php').then((response) => {
+			this.$http.get('http://192.168.1.100/dashboard/moniweixin/vue_php_wx/src/actions/get_friend_actives.php').then((response) => {
 				var get_data = response.data;
 				that.actives = get_data;
 			}, (response) => {

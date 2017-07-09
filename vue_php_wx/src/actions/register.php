@@ -14,4 +14,4 @@ if (!empty($user)) {
 		echo "Error: " . $sql . "<br>" . $conn -> error;
 	}
 }
-?>`
+?>
