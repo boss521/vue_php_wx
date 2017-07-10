@@ -35,13 +35,32 @@
 		data() {
 			return {
 				inde: 1,
-				footer:0
+				footer: 0
 			}
 		},
+//		created: function() {
+//			alert(0)
+//		},
+//		mounted: function() {
+//			alert(9)
+//		},
 		methods: {
-			tab_inde: function(n,router_to) {
+			tab_inde: function(n, router_to) {
+				var that = this;
 				this.inde = n;
 				this.$router.push(router_to);
+				$.ajax({
+					type: 'post',
+					url: "http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/tab_footer.php",
+					data: {
+						"inde": that.inde
+					},
+					success: function(d) {
+						console.log("成功" + d);
+						that.inde = d;
+						console.log(that.inde)
+					}
+				});
 			}
 		}
 	}
@@ -53,9 +72,11 @@
 	body,
 	ul,
 	span,
-	i,p,hr {
+	i,
+	p,
+	hr {
 		margin: 0;
-		padding: 0;	
+		padding: 0;
 		font-family: "宋体";
 	}
 	
@@ -65,9 +86,11 @@
 	strong {
 		font-style: normal;
 	}
-	li{
+	
+	li {
 		list-style: none;
 	}
+	
 	html,
 	body {
 		height: 100%;
