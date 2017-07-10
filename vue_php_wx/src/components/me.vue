@@ -44,7 +44,10 @@
 
 <script>
 	export default {
-		name: 'me'
+		name: 'me',
+		mounted: function() {
+			this.$parent.footer = 1;
+		}
 	}
 </script>
 

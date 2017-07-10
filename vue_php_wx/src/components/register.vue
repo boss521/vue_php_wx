@@ -41,7 +41,7 @@
 					this.can_sub = 1;
 					$.ajax({
 						type: 'post',
-						url: "http://192.168.1.100/dashboard/moniweixin/vue_php_wx/src/actions/register.php",
+						url: "http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/register.php",
 						data: {
 							"user": that.user,
 							"password": that.psw
@@ -49,7 +49,7 @@
 						success: function(d) {
 							alert("注册成功");
 							that.$router.push({
-								path: "/login"
+								path: "/"
 							});
 							console.log(d);
 							console.log("成功传到后台")
@@ -129,7 +129,7 @@
 		font-size: .25rem;
 		width: 80%;
 		margin: 0 auto;
-		margin-top: 2rem;
+		margin-top: 1rem;
 		color: #57607f;
 	}
 	

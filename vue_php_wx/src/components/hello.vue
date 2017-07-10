@@ -62,7 +62,9 @@
 				}]
 			}
 		},
-		mounted: function() {}
+		mounted: function() {
+			this.$parent.footer = 1;
+		}
 	}
 </script>
 

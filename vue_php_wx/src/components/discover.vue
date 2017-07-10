@@ -46,14 +46,17 @@
 
 <script>
 	export default {
-		name: 'found'
+		name: 'found',
+		mounted: function() {
+			this.$parent.footer = 1;
+		}
 	}
 </script>
 
 <style scoped>
 	.found {
 		background: #EFEFF5;
-		padding-bottom:1.2rem ;
+		padding-bottom: 1.2rem;
 	}
 	
 	hr {
@@ -73,10 +76,11 @@
 		background: url(../assets/images/more.jpg)4.9rem center no-repeat;
 		background-size: .17rem .28rem;
 	}
-	.lists{
+	
+	.lists {
 		overflow: hidden;
-		
 	}
+	
 	.circle_of_friends {
 		height: 0.86rem;
 		width: 100%;
@@ -115,7 +119,6 @@
 	ul li:nth-of-type(1) {
 		border-bottom: 1px solid #E5E5E5;
 		margin: 0.3rem 0 .4rem 0;
-
 	}
 	
 	ul li:nth-of-type(3) {

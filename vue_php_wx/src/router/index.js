@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
+import hello from '@/components/hello'
 import address_list from '@/components/address_list'
 import discover from '@/components/discover'
 import send_character from '@/components/send_character'
@@ -15,21 +15,21 @@ Vue.use(Router)
 export default new Router({
 	routes: [{
 			path: '/',
+			name: 'login',
+			component: login
+		}, {
+			path: '/register',
 			name: 'register',
 			component: register
 		},
 		{
-			path: '/login',
-			name: 'login',
-			component: login
-		}, {
 			path: '/set_name_head',
 			name: 'set_name_head',
 			component: set_name_head
 		}, {
-			path: '/Hello',
-			name: 'Hello',
-			component: Hello
+			path: '/hello',
+			name: 'hello',
+			component: hello
 		},
 		{
 			path: '/address_list',

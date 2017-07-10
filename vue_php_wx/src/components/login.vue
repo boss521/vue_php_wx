@@ -7,6 +7,7 @@
 			<label for="password">密码</label><input type="input" v-model="psw" name="password" id="password" placeholder="请输入密码" />
 		</div>
 		<div class="register_btn" :class="{green_bg:can_sub==1}" @click="register">登录</div>
+		<router-link class="go_to_register" tag="div" to="/register">还没注册，去注册 >></router-link>
 		<p class="agreement">欢迎登录</p>
 	</div>
 </template>
@@ -29,6 +30,7 @@
 				}
 			}
 		},
+
 		methods: {
 			register: function() {
 				var that = this;
@@ -42,22 +44,30 @@
 					this.can_sub = 1;
 					$.ajax({
 						type: 'post',
-						url: "http://192.168.1.100/dashboard/moniweixin/vue_php_wx/src/actions/login.php",
+						url: "http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/login.php",
 						data: {
 							"user": that.user,
 							"password": that.psw
 						},
 						success: function(d) {
-							if(d == 1) {
-								that.$router.push({
-									path: "/set_name_head",
-									query: {
-										"user": that.user,
-										"password": that.psw
-									}
-								});
-							} else {
-								alert("账号或者密码错误")
+							var data = JSON.parse(d);
+							if(d == 0) {
+								alert("账号或者密码错误！");
+							} else if(data[0].id == that.user && data[0].password == that.psw) {
+								if((data[0].name == '') || (data[0].name == null)) {
+									that.$router.push({
+										path: "/set_name_head",
+										query: {
+											"user": that.user,
+											"password": that.psw
+										}
+									})
+								} else {
+									
+									that.$router.push({
+										path: "/address_list"
+									});
+								}
 							}
 						}
 					});
@@ -118,5 +128,10 @@
 	
 	.green_bg {
 		background: #4de84d;
+	}
+	
+	.go_to_register {
+		font-size: .23rem;
+		margin-top: 1rem;
 	}
 </style>

@@ -18,7 +18,7 @@
 			return {
 				infos: [],
 				img_url: '',
-				head: "http://192.168.1.100/dashboard/moniweixin/vue_php_wx/src/assets/images/upload.png",
+				head: "http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/assets/images/upload.png",
 				yourName: ''
 			}
 		},
@@ -28,20 +28,24 @@
 				var reader = new FileReader;
 				//console.log(reader);
 			},
-
 			sub: function() {
 				var that = this;
 				$.ajax({
 					type: 'post',
-					url: "http://192.168.1.100/dashboard/moniweixin/vue_php_wx/src/actions/set_name_head.php",
+					url: "http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/set_name_head.php",
 					data: {
 						"name": that.yourName,
 						"user": that.$route.query.user,
 						"password": that.$route.query.password
 					},
 					success: function(d) {
-						console.log(d)
+						that.$parent.footer = 1;
 						alert("上传名字成功");
+
+						that.$router.push({
+							'path': '/address_list'
+						});
+
 					}
 				});
 			}

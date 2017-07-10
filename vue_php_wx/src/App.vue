@@ -3,7 +3,7 @@
 		<!--<img src="./assets/logo.png">-->
 		<footer v-if="footer==1">
 			<ul class="menus_box">
-				<li class="to_wx" :class="{green_font:inde==1}" @click="tab_inde(1,'/')">
+				<li class="to_wx" :class="{green_font:inde==1}" @click="tab_inde(1,'/Hello')">
 					<span class="iconfont" v-if="inde==1">&#xe62c;</span>
 					<span class="iconfont" v-else>&#xe5ad;</span>
 					<i>微信</i>
