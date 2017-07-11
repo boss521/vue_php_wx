@@ -1,5 +1,8 @@
 <template>
 	<div class="address_list">
+		<div class="search">
+			<input type="text" name="find" id="find" value=""/><label for="">搜索</label>
+		</div>
 		<ul class="nearlist" v-for="info in infos">
 			<li class="list">
 				<img class="head" :src="info.header" />
@@ -64,5 +67,27 @@
 		font-size: .3rem;
 		line-height: .9rem;
 		text-align: left;
+	}
+	.search{
+		height: .8rem;
+		width: 80%;
+		padding: 0 10%;
+		font-size: .23rem;
+		color: green;
+		position: relative;
+		border-bottom: 1px solid #d7d7d7;
+		
+	}
+	#find{
+		width: 100%;
+		margin: .2rem 0 0 0;
+		
+	}
+	label{
+		position: absolute;
+		top: .2rem;
+		right: 10%;
+		height: 100%;
+		line-height: .45rem;
 	}
 </style>
