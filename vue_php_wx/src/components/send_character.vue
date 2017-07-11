@@ -24,16 +24,21 @@
 		name: 'send_character',
 		data() {
 			return {
-				contents: ""
+				contents: "",
+				user: ''
 			}
+		},
+		created() {
+			document.title = '发动态'
 		},
 		methods: {
 			send_out: function() {
 				var that = this;
+				this.user = this.$cookie.get('user');
 				if(this.contents == '' || this.contents == null) {
 					alert('不能发送空内容')
 				} else {
-					this.$http.get('http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/send_character.php?contents='+ that.contents).then((response) => {
+					this.$http.get('http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/send_character.php?contents=' + that.contents + '&user=' + that.user).then((response) => {
 						that.contents = '';
 						console.log(response.data);
 						that.$router.push('/friends');

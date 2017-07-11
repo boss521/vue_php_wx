@@ -47,8 +47,12 @@
 <script>
 	export default {
 		name: 'found',
+		created: function() {
+			document.title = '发现'
+		},
 		mounted: function() {
 			this.$parent.footer = 1;
+			this.$parent.inde = 3;
 		}
 	}
 </script>

@@ -45,8 +45,12 @@
 <script>
 	export default {
 		name: 'me',
+		created: function() {
+			document.title = '我'
+		},
 		mounted: function() {
 			this.$parent.footer = 1;
+			this.$parent.inde = 4;
 		}
 	}
 </script>

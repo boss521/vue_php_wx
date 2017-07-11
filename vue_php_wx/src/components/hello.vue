@@ -62,8 +62,12 @@
 				}]
 			}
 		},
+		created: function() {
+			document.title = '聊天'
+		},
 		mounted: function() {
 			this.$parent.footer = 1;
+			this.$parent.inde = 1;
 		}
 	}
 </script>

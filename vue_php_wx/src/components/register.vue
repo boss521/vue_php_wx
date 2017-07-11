@@ -20,6 +20,9 @@
 				psw: ''
 			}
 		},
+		created() {
+			document.title = '注册'
+		},
 		computed: {
 			can_sub: function() {
 				if(this.user != '' && this.psw != '') {

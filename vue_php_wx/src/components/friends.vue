@@ -1,7 +1,7 @@
 <template>
 	<div class="friends">
 		<div class="wall">
-			<span>{{self_info.self_name}}</span>
+			<span>{{self_info.name}}</span>
 			<div class="your_head">
 				<img :src="self_info.self_head" alt="">
 			</div>
@@ -12,7 +12,7 @@
 				<div class="mini">
 					<img :src="active.header" alt="">
 				</div>
-				<div class="name">{{active.send_id}}</div>
+				<div class="name">{{active.name}}</div>
 				<div class="content">{{active.contents}}</div>
 				<address>{{active.send_time}}</address>
 			</li>
@@ -27,26 +27,26 @@
 			return {
 				self_info: {
 					self_head: require('../assets/images/touxiang.jpg'),
-					self_name: 'Zone'
+					user: '',
+					name:''
+					
 				},
-				actives: [{
-					//					id:"",
-					//					send_id: '贾玲',
-					//					pyq_img_url: require('../assets/images/3.jpg'),
-					//					contents: "我是搞笑达人--->贾玲",
-					//					send_time: '2017/02/02 12:12:20'
-
-				}]
+				actives: [{}]
 			}
 		},
+		created:function() {
+			document.title = '朋友圈'
+		},
 		mounted: function() {
-			this.$parent.footer=0;
+			this.$parent.footer = 0;
 			var that = this;
-			this.$http.get('http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/get_friend_actives.php').then((response) => {
+			this.self_info.user = this.$cookie.get('user');
+			this.$http.get('http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/get_friend_actives.php?user=' + that.self_info.user).then((response) => {
 				var get_data = response.data;
+				console.log(get_data)
 				that.actives = get_data;
 			}, (response) => {
-				alert("获取数据失败")
+				alert("获取数据失败");
 			})
 		}
 	}

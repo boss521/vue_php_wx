@@ -21,6 +21,9 @@
 				psw: ''
 			}
 		},
+		created: function() {
+			document.title = '登录'
+		},
 		computed: {
 			can_sub: function() {
 				if(this.user != '' && this.psw != '') {
@@ -30,7 +33,6 @@
 				}
 			}
 		},
-
 		methods: {
 			register: function() {
 				var that = this;
@@ -54,6 +56,8 @@
 							if(d == 0) {
 								alert("账号或者密码错误！");
 							} else if(data[0].id == that.user && data[0].password == that.psw) {
+								that.$cookie.set('user', that.user, 5);
+								that.$cookie.set('psw', that.psw, 5);
 								if((data[0].name == '') || (data[0].name == null)) {
 									that.$router.push({
 										path: "/set_name_head",
@@ -63,7 +67,6 @@
 										}
 									})
 								} else {
-									
 									that.$router.push({
 										path: "/address_list"
 									});
@@ -122,7 +125,7 @@
 		font-size: .25rem;
 		width: 80%;
 		margin: 0 auto;
-		margin-top: 2rem;
+		margin-top: 1.4rem;
 		color: #57607f;
 	}
 	
@@ -132,6 +135,6 @@
 	
 	.go_to_register {
 		font-size: .23rem;
-		margin-top: 1rem;
+		margin-top: .6rem;
 	}
 </style>

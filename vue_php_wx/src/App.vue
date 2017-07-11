@@ -1,6 +1,5 @@
 <template>
 	<div id="app">
-		<!--<img src="./assets/logo.png">-->
 		<footer v-if="footer==1">
 			<ul class="menus_box">
 				<li class="to_wx" :class="{green_font:inde==1}" @click="tab_inde(1,'/Hello')">
@@ -38,29 +37,11 @@
 				footer: 0
 			}
 		},
-//		created: function() {
-//			alert(0)
-//		},
-//		mounted: function() {
-//			alert(9)
-//		},
 		methods: {
 			tab_inde: function(n, router_to) {
 				var that = this;
 				this.inde = n;
 				this.$router.push(router_to);
-				$.ajax({
-					type: 'post',
-					url: "http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/tab_footer.php",
-					data: {
-						"inde": that.inde
-					},
-					success: function(d) {
-						console.log("成功" + d);
-						that.inde = d;
-						console.log(that.inde)
-					}
-				});
 			}
 		}
 	}
