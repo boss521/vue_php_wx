@@ -9,7 +9,7 @@
 			</router-link>
 			<li class="circle_of_friends">
 				<span id="font" class="iconfont">&#xe6d8;</span>
-				<em>扫一扫</em>
+				<em id="scanQRCode0">扫一扫</em>
 			</li>
 			<hr />
 			<li class="circle_of_friends">
