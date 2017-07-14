@@ -10,7 +10,7 @@
  * 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。
  */
 wx.config({
-	debug: true,
+	debug: false,
 	appId: 'wxa2eac99c5d1a4a28',
 	timestamp: 1499939059,
 	nonceStr: 's0u404ny07ua18n',
