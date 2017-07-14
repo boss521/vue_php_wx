@@ -9,7 +9,7 @@
 			</router-link>
 			<li class="circle_of_friends">
 				<span id="font" class="iconfont">&#xe6d8;</span>
-				<em id="scanQRCode0">扫一扫</em>
+				<em @click="saoyisao">扫一扫</em>
 			</li>
 			<hr />
 			<li class="circle_of_friends">
@@ -23,7 +23,7 @@
 			<hr />
 			<li class="circle_of_friends">
 				<span id="font" class="iconfont">&#xe504;</span>
-				<em>附近的人</em>
+				<em>漂流瓶</em>
 			</li>
 			<li class="circle_of_friends">
 				<span id="red" class="iconfont">&#xe50c;</span>
@@ -41,6 +41,7 @@
 				<em>小程序</em>
 			</li>
 		</ul>
+		<div id="arrow"></div>
 	</div>
 </template>
 
@@ -53,6 +54,31 @@
 		mounted: function() {
 			this.$parent.footer = 1;
 			this.$parent.inde = 3;
+			try {
+				var text = "";
+				window.addEventListener("deviceorientation", orientationHandler, false);
+				function orientationHandler(event) {
+					text = ""
+					var arrow = document.getElementById("arrow");
+					text += "左右旋转：rotate alpha{" + Math.round(event.alpha) + "deg)<p>";
+					text += "前后旋转：rotate beta{" + Math.round(event.beta) + "deg)<p>";
+					text += "扭转设备：rotate gamma{" + Math.round(event.gamma) + "deg)<p>";
+					arrow.innerHTML = text;
+				}
+			} catch(e) {
+				$("#arrow").html(e.message)
+			}
+		},
+		methods: {
+			saoyisao: function() {
+				wx.scanQRCode({
+					needResult: 1,
+					desc: 'scanQRCode desc',
+					success: function(res) {
+						alert(JSON.stringify(res));
+					}
+				});
+			}
 		}
 	}
 </script>
@@ -62,7 +88,9 @@
 		background: #EFEFF5;
 		padding-bottom: 1.2rem;
 	}
-	
+	#arrow{
+		font-size: .2rem;
+	}
 	hr {
 		width: 6.1rem;
 		float: right;
