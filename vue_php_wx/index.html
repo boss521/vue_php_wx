@@ -7,30 +7,6 @@
 		<title>微信</title>
 		<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 		<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-		<script type="text/javascript">
-			//rem布局
-			(function(doc, win) {
-				var docEl = doc.documentElement,
-					resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
-					recalc = function() {
-						var clientWidth = docEl.clientWidth;
-						if(!clientWidth) return;
-						docEl.style.fontSize = clientWidth / 6.4 + 'px';
-					};
-				if(!doc.addEventListener) return;
-				win.addEventListener(resizeEvt, recalc, false);
-				doc.addEventListener('DOMContentLoaded', recalc, false);
-			})(document, window);
-			//检测横竖屏
-			window.addEventListener('orientationchange', function(event) {
-				if(window.orientation == 180 || window.orientation == 0) {
-					//alert("竖屏");
-				}
-				if(window.orientation == 90 || window.orientation == -90) {
-					//alert("请您竖屏浏览");
-				}
-			});
-		</script>
 	</head>
 
 	<body>

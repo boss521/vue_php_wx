@@ -37,6 +37,30 @@
 				footer: 0
 			}
 		},
+		created:function() {
+			//rem布局
+			(function(doc, win) {
+				var docEl = doc.documentElement,
+					resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+					recalc = function() {
+						var clientWidth = docEl.clientWidth;
+						if(!clientWidth) return;
+						docEl.style.fontSize = clientWidth / 6.4 + 'px';
+					};
+				if(!doc.addEventListener) return;
+				win.addEventListener(resizeEvt, recalc, false);
+				doc.addEventListener('DOMContentLoaded', recalc, false);
+			})(document, window);
+			//检测横竖屏
+			window.addEventListener('orientationchange', function(event) {
+				if(window.orientation == 180 || window.orientation == 0) {
+					//alert("竖屏");
+				}
+				if(window.orientation == 90 || window.orientation == -90) {
+					//alert("请您竖屏浏览");
+				}
+			});
+		},
 		methods: {
 			tab_inde: function(n, router_to) {
 				var that = this;
