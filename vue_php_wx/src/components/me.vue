@@ -5,7 +5,7 @@
 				<span class="set_head_box">
 					<img id="set_head" src="../assets/images/touxiang.jpg" alt="">
 				</span>
-				<em class="wx_num">
+				<em class="wx_num" @click="reset_head_name">
 					<strong>mc小d</strong>
 					<i>微信号：1252561226</i>
 				</em>
@@ -51,6 +51,12 @@
 		mounted: function() {
 			this.$parent.footer = 1;
 			this.$parent.inde = 4;
+		},
+		methods:{
+			reset_head_name:function(){
+				this.$parent.footer = 0;
+				this.$router.push({path:'/set_name_head'})
+			}
 		}
 	}
 </script>
