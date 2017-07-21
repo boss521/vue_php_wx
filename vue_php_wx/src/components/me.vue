@@ -33,7 +33,6 @@
 				<span id="yellow" class="iconfont">&#xe60c;</span>
 				<em>表情</em>
 			</li>
-
 			<li class="circle_of_friends">
 				<span id="font" class="iconfont">&#xe620;</span>
 				<em>设置</em>
@@ -54,8 +53,7 @@
 		},
 		methods:{
 			reset_head_name:function(){
-				this.$parent.footer = 0;
-				this.$router.push({path:'/set_name_head'})
+				this.$router.push({path:'/set_name_head'});
 			}
 		}
 	}
