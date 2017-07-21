@@ -3,7 +3,7 @@
 		<div class="wrap">
 			<span>上传头像</span>
 			<input type="file" name="" @change="change" id="upload_img" value="" />
-			<img class="mask" :src="head" />
+			<img class="mask" id="mask" :src="head" />
 		</div>
 		<label for="name">名字</label><input type="text" v-model="yourName" name="name" id="name" value="" />
 		<button @click="sub">提交</button>
@@ -22,11 +22,35 @@
 				yourName: ''
 			}
 		},
+		mounted: function() {
+			this.$parent.footer = 0;
+		},
 		methods: {
-			change: function(e) {
-				alert(66);
-				var reader = new FileReader;
-				//console.log(reader);
+			change: function() {
+				//替换本页的+号
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					console.log(e);
+					document.getElementById('mask').setAttribute("src", e.target.result);
+				}      
+				reader.readAsDataURL(document.getElementById('upload_img').files[0]);
+				var form_data = new FormData();
+				form_data.append('filename', document.getElementById('upload_img').name);
+				form_data.append('upfile', document.getElementById('upload_img'));
+				$.ajax({
+					url: 'http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/img_upload.php',
+					type: 'post',
+					data: form_data,
+					dataType: 'json',
+					contentType: false, //必须false才会自动加上正确的Content-Type
+					processData: false, //必须false才会避开jQuery对 formdata 的默认处理, XMLHttpRequest会对 formdata 进行正确的处理
+					success: function(data) { //返回的数据需要包括url
+						
+					},
+					error: function() {
+						alert('上传失败')
+					}
+				});
 			},
 			sub: function() {
 				var that = this;
@@ -41,7 +65,6 @@
 					success: function(d) {
 						that.$parent.footer = 1;
 						alert("上传名字成功");
-
 						that.$router.push({
 							'path': '/address_list'
 						});
