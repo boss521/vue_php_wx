@@ -59,7 +59,7 @@
 							} else if(data[0].userid == that.user && data[0].password == that.psw) {
 								that.$cookie.set('user', that.user, 5);
 								that.$cookie.set('psw', that.psw, 5);
-								if((data[0].name == '') || (data[0].name == null)) {
+								if((data[0].name == '') || (data[0].name == null)||(data[0].header == '') || (data[0].header == null)) {
 									that.$router.push({
 										path: "/set_name_head",
 										query: {

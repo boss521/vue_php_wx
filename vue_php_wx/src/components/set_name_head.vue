@@ -32,7 +32,7 @@
 				reader.onload = function(e) {
 					console.log(e);
 					document.getElementById('mask').setAttribute("src", e.target.result);
-				}      
+				}
 				reader.readAsDataURL(document.getElementById('upload_img').files[0]);
 				var form_data = new FormData();
 				form_data.append('filename', document.getElementById('upload_img').name);
@@ -45,7 +45,7 @@
 					contentType: false, //必须false才会自动加上正确的Content-Type
 					processData: false, //必须false才会避开jQuery对 formdata 的默认处理, XMLHttpRequest会对 formdata 进行正确的处理
 					success: function(data) { //返回的数据需要包括url
-						
+
 					},
 					error: function() {
 						alert('上传失败')
@@ -54,23 +54,28 @@
 			},
 			sub: function() {
 				var that = this;
-				$.ajax({
-					type: 'post',
-					url: "http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/set_name_head.php",
-					data: {
-						"name": that.yourName,
-						"user": that.$route.query.user,
-						"password": that.$route.query.password
-					},
-					success: function(d) {
-						that.$parent.footer = 1;
-						alert("上传名字成功");
-						that.$router.push({
-							'path': '/address_list'
-						});
+				if(this.yourName == null || this.yourName == '') {
+					alert('名字不能为空');
+				} else {
+					$.ajax({
+						type: 'post',
+						url: "http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/set_name_head.php",
+						data: {
+							"name": that.yourName,
+							"user": that.$route.query.user,
+							"password": that.$route.query.password
+						},
+						success: function(d) {
+							that.$parent.footer = 1;
+							alert("上传名字成功");
+							that.$router.push({
+								'path': '/address_list'
+							});
 
-					}
-				});
+						}
+					});
+				}
+
 			}
 		}
 	}

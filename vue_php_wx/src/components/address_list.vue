@@ -27,7 +27,8 @@
 			this.$parent.footer = 1;
 			this.$parent.inde = 2;
 			var that = this;
-			this.$http.get('http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/get_address_list.php').then((response) => {
+			var cook=this.$cookie.get('user');
+			this.$http.get('http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/get_address_list.php?cook='+cook).then((response) => {
 				var get_data = response.data;
 				that.infos = get_data;
 			}, (response) => {
