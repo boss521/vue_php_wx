@@ -1,7 +1,7 @@
 <template>
 	<div class="friends">
 		<div class="wall">
-			<span>{{self_info.user}}</span>
+			<span>{{self_info.name}}</span>
 			<div class="your_head">
 				<img :src="self_info.self_head" alt="">
 			</div>
@@ -27,13 +27,13 @@
 			return {
 				self_info: {
 					self_head: require('../assets/images/touxiang.jpg'),
-					user: ''
-					
+					user: '',
+					name: ''
 				},
 				actives: [{}]
 			}
 		},
-		created:function() {
+		created: function() {
 			document.title = '朋友圈'
 		},
 		mounted: function() {
@@ -42,7 +42,9 @@
 			this.self_info.user = this.$cookie.get('user');
 			this.$http.get('http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/get_friend_actives.php?user=' + that.self_info.user).then((response) => {
 				var get_data = response.data;
-				that.actives = get_data;
+				that.self_info.name = get_data[0];
+				var new_arr = get_data.slice(1);
+				that.actives = new_arr;
 			}, (response) => {
 				alert("获取数据失败");
 			})
