@@ -50,12 +50,15 @@
 							"password": that.psw
 						},
 						success: function(d) {
-							alert("注册成功");
-							that.$router.push({
-								path: "/"
-							});
 							console.log(d);
-							console.log("成功传到后台")
+							if(d*1 == 1) {
+								alert('该用户已经存在！')
+							} else {
+								alert("注册成功");
+								that.$router.push({
+									path: "/"
+								});
+							}
 						}
 					});
 					/*

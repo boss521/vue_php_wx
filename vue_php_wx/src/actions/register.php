@@ -1,15 +1,18 @@
 <?php
 @include ('connect_sql.php');
-//	获取客户端传来数据
+//获取客户端传来数据
 $user = $_POST["user"];
 $psw = $_POST["password"];
-var_dump($user);
-echo "帐号为" . $user . "密码为" . $psw;
-
-if (!empty($user)) {
-	$insertdb = "INSERT INTO user (id, password) VALUES ('{$user}','{$psw}')";
+//查询该用户是否已经存在
+$sql = "select userid from user where userid='{$user}'";
+$result = $conn -> query($sql);
+$row = $result -> fetch_row();
+if ($row) {
+	echo 1;
+} else {
+	$insertdb = "INSERT INTO user (userid, password) VALUES ('{$user}','{$psw}')";
 	if ($conn -> query($insertdb) === TRUE) {
-		echo "新记录插入成功";
+		echo "新用户注册成功";
 	} else {
 		echo "Error: " . $sql . "<br>" . $conn -> error;
 	}
