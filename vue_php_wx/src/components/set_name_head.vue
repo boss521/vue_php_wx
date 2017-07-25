@@ -8,7 +8,6 @@
 		<label for="name">名字</label><input type="text" v-model="yourName" name="name" id="name" value="" />
 		<button @click="sub">提交</button>
 	</div>
-
 </template>
 
 <script>
@@ -29,23 +28,25 @@
 			change: function() {
 				//替换本页的+号
 				var reader = new FileReader();
+				var that = this;
+				//处理前端显示的代码
 				reader.onload = function(e) {
-					console.log(e);
 					document.getElementById('mask').setAttribute("src", e.target.result);
 				}
 				reader.readAsDataURL(document.getElementById('upload_img').files[0]);
+				//传图片给后台的代码
 				var form_data = new FormData();
-				form_data.append('filename', document.getElementById('upload_img').name);
-				form_data.append('upfile', document.getElementById('upload_img'));
+				form_data.append('filename', document.getElementById('upload_img').files[0]);
 				$.ajax({
-					url: 'http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/img_upload.php',
+					url: 'http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/upload_img.php',
 					type: 'post',
 					data: form_data,
 					dataType: 'json',
 					contentType: false, //必须false才会自动加上正确的Content-Type
 					processData: false, //必须false才会避开jQuery对 formdata 的默认处理, XMLHttpRequest会对 formdata 进行正确的处理
 					success: function(data) { //返回的数据需要包括url
-
+//						console.log(data);
+						that.head = data.upload_resize_url;
 					},
 					error: function() {
 						alert('上传失败')
@@ -63,7 +64,8 @@
 						data: {
 							"name": that.yourName,
 							"user": that.$route.query.user,
-							"password": that.$route.query.password
+							"password": that.$route.query.password,
+							"head":that.head
 						},
 						success: function(d) {
 							that.$parent.footer = 1;
@@ -71,11 +73,9 @@
 							that.$router.push({
 								'path': '/address_list'
 							});
-
 						}
 					});
 				}
-
 			}
 		}
 	}
