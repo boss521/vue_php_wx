@@ -61,11 +61,11 @@
 								that.$cookie.set('psw', that.psw, 5);
 								if((data[0].name == '') || (data[0].name == null)||(data[0].header == '') || (data[0].header == null)) {
 									that.$router.push({
-										path: "/set_name_head",
-										query: {
-											"user": that.user,
-											"password": that.psw
-										}
+										path: "/set_name_head"
+//										query: {
+//											"user": that.user,
+//											"password": that.psw
+//										}
 									})
 								} else {
 									that.$router.push({
