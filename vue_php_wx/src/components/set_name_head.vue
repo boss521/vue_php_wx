@@ -72,7 +72,7 @@
 					},
 					success: function(d) {
 						that.$parent.footer = 1;
-						alert("上传名字成功");
+						alert("修改昵称成功");
 						that.$router.push({
 							'path': '/address_list'
 						});
