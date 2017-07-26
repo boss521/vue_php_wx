@@ -40,7 +40,7 @@
 			this.$parent.footer = 0;
 			var that = this;
 			this.self_info.user = this.$cookie.get('user');
-			this.$http.get('http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/get_friend_actives.php?user=' + that.self_info.user).then((response) => {
+			this.$http.get('http://192.168.1.100/dashboard/moniweixin/vue_php_wx/src/actions/get_friend_actives.php?user=' + that.self_info.user).then((response) => {
 				var get_data = response.data;
 				that.self_info.name = get_data[0];
 				var new_arr = get_data.slice(1);

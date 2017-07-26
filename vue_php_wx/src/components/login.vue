@@ -46,7 +46,7 @@
 					this.can_sub = 1;
 					$.ajax({
 						type: 'post',
-						url: "http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/login.php",
+						url: "http://192.168.1.100/dashboard/moniweixin/vue_php_wx/src/actions/login.php",
 						data: {
 							"user": that.user,
 							"password": that.psw
