@@ -4,12 +4,6 @@
 $user = $_POST["user"];
 $psw = $_POST["password"];
 
-//if (!empty($_COOKIE['user'])) {
-//	echo $_COOKIE['user'];
-//	$user = $_COOKIE('user');
-//	$psw = $_COOKIE('psw');
-//}
-
 $name = $_POST["name"];
 $head = $_POST["head"];
 echo $user . $psw . $name;

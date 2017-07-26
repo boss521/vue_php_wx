@@ -46,6 +46,8 @@
 					processData: false, //必须false才会避开jQuery对 formdata 的默认处理, XMLHttpRequest会对 formdata 进行正确的处理
 					success: function(data) { //返回的数据需要包括url
 //						console.log(data);
+
+						console.log(data);
 						that.head = data.upload_resize_url;
 					},
 					error: function() {
