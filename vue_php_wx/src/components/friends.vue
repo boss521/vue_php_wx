@@ -3,7 +3,7 @@
 		<div class="wall">
 			<span>{{self_info.name}}</span>
 			<div class="your_head">
-				<img :src="self_info.self_head" alt="">
+				<img :src="self_info.header" alt="">
 			</div>
 			<router-link class="camare" to="/send_character">去发动态</router-link>
 		</div>
@@ -26,7 +26,7 @@
 		data() {
 			return {
 				self_info: {
-					self_head: require('../assets/images/touxiang.jpg'),
+					header: 'http://192.168.1.100/dashboard/moniweixin/vue_php_wx/src/assets/images/touxiang.jpg',
 					user: '',
 					name: ''
 				},
@@ -42,8 +42,10 @@
 			this.self_info.user = this.$cookie.get('user');
 			this.$http.get('http://192.168.1.100/dashboard/moniweixin/vue_php_wx/src/actions/get_friend_actives.php?user=' + that.self_info.user).then((response) => {
 				var get_data = response.data;
+				console.log(get_data);
 				that.self_info.name = get_data[0];
-				var new_arr = get_data.slice(1);
+				that.self_info.header = get_data[1];
+				var new_arr = get_data.slice(2);
 				that.actives = new_arr;
 			}, (response) => {
 				alert("获取数据失败");

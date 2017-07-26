@@ -68,6 +68,7 @@
 		mounted: function() {
 			this.$parent.footer = 1;
 			this.$parent.inde = 1;
+			alert('暂未开通聊天功能，敬请期待。。')
 		}
 	}
 </script>
