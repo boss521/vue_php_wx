@@ -1,10 +1,10 @@
 <template>
-	<div class="send_character">
+	<div class="send_character" id="allmap">
 		<textarea class="contents" v-model="contents" placeholder="输入想说的话。。"></textarea>
 		<hr />
 		<li class="circle_of_friends">
 			<span class="addr"></span>
-			<em>所在位置</em>
+			<em @click="address">所在位置</em>
 		</li>
 		<li class="circle_of_friends">
 			<span class="earth"></span>
@@ -38,7 +38,7 @@
 				if(this.contents == '' || this.contents == null) {
 					alert('不能发送空内容')
 				} else {
-					this.$http.get('http://192.168.1.100/dashboard/moniweixin/vue_php_wx/src/actions/send_character.php?contents=' + that.contents + '&user=' + that.user).then((response) => {
+					this.$http.get('http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/send_character.php?contents=' + that.contents + '&user=' + that.user).then((response) => {
 						that.contents = '';
 						console.log(response.data);
 						that.$router.push('/friends');
@@ -46,6 +46,14 @@
 						alert('服务器请求失败');
 					});
 				}
+			},
+			address: function() {
+				// 百度地图API功能
+				var map = new BMap.Map("allmap"); // 创建Map实例
+				map.centerAndZoom(new BMap.Point(120.19, 30.26), 11); // 初始化地图,设置中心点坐标和地图级别
+				map.addControl(new BMap.MapTypeControl()); //添加地图类型控件
+				map.setCurrentCity("杭州"); // 设置地图显示的城市 此项是必须设置的
+				map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
 			}
 		}
 	}
@@ -55,7 +63,9 @@
 	.send_character {
 		padding-bottom: 1.2rem;
 	}
-	
+	#allmap{
+		height: 100%;
+	}
 	.contents {
 		display: block;
 		height: 3rem;
