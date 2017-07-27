@@ -39,9 +39,9 @@
 		},
 		computed: {
 			has_address: function() {
-//				if(active.address == '所在位置') {
-					return 1;
-//				}
+				//				if(active.address == '所在位置') {
+				return 1;
+				//				}
 			}
 		},
 		mounted: function() {
@@ -130,8 +130,9 @@
 		font-size: .15rem;
 		color: #55A532;
 		background: url(../assets/images/address_green.png)left center no-repeat;
-		background-size:.15rem 65%;
+		background-size: .15rem 65%;
 		padding-left: .2rem;
+		line-height: .35rem;
 	}
 	
 	.head_friends {

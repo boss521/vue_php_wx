@@ -128,7 +128,7 @@
 	i {
 		display: block;
 		height: 50%;
-		width: 60%;
+		width: 70%;
 		float: left;
 	}
 	

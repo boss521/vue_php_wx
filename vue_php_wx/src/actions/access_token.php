@@ -1,5 +1,5 @@
 <?php
-$url = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=9tZ6_MAmA2l5wYZYfpIsS0nUoE0r7XlipJ6e1qfyJJo2Qgm6QNtipq9Lbqd5x8kAWi7qEsaNt__cBFqSXlB8-G6hyiNJgLUaLMfn_ekOqYlcKvTE9YTLccB0BeHyd-C1IHHeAAASRR&type=jsapi';
+$url = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=fj7IDGZ4eape4lf9SCdVSBimsINIx9MRmFmY99VTT1S8GD87dTfQt6f6hJ5jYEp2U45gN02Ybg_xbRF-B59jxHqv6Mhs1kRGJZr5suK3KHeQ-dQ2A1_nnB2qjtsD3U7xJDZgADAAUQ&type=jsapi';
 $html = file_get_contents($url);
 echo $html;
 ?>

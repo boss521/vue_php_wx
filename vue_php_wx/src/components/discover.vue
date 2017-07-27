@@ -55,9 +55,10 @@
 			this.$parent.footer = 1;
 			this.$parent.inde = 3;
 			//调用手机陀螺仪
-			try {
+			/*try {
 				var text = "";
 				window.addEventListener("deviceorientation", orientationHandler, false);
+
 				function orientationHandler(event) {
 					text = ""
 					var arrow = document.getElementById("arrow");
@@ -68,15 +69,22 @@
 				}
 			} catch(e) {
 				$("#arrow").html(e.message)
-			}
+			}*/
 		},
 		methods: {
 			saoyisao: function() {
-				wx.scanQRCode({
-					needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
-					scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+				wx.chooseImage({
+					count: 9, // 默认9
+					sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+					sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
 					success: function(res) {
-						var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+						var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+					}
+				});
+				wx.getNetworkType({
+					success: function(res) {
+						var networkType = res.networkType; // 返回网络类型2g，3g，4g，wifi
+						alert('你现在用的是' + networkType)
 					}
 				});
 			}
