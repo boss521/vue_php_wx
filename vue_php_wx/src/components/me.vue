@@ -3,11 +3,11 @@
 		<ul class="lists">
 			<li class="circle_of_friends">
 				<span class="set_head_box">
-					<img id="set_head" src="../assets/images/touxiang.jpg" alt="">
+					<img id="set_head" :src="data.header" alt="">
 				</span>
 				<em class="wx_num" @click="reset_head_name">
-					<strong>mc小d</strong>
-					<i>微信号：1252561226</i>
+					<strong>{{data.name}}</strong>
+					<i>微信号：{{data.userid}}</i>
 				</em>
 			</li>
 			<li class="circle_of_friends">
@@ -44,16 +44,45 @@
 <script>
 	export default {
 		name: 'me',
+		data() {
+			return {
+				data: {
+					name: '',
+					header: '',
+					user: ''
+				}
+			}
+		},
 		created: function() {
 			document.title = '我'
 		},
 		mounted: function() {
+			var that = this;
+			var user = this.$cookie.get('user');
+			this.user = user;
 			this.$parent.footer = 1;
 			this.$parent.inde = 4;
+			$.ajax({
+				type: 'post',
+				url: "http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/me.php",
+				dataType: 'text',
+				data: {
+					"user": that.user
+				},
+				success: function(data) {
+					var d = JSON.parse(data);
+					that.data = d;
+				},
+				error: function() {
+					alert('服务器请求失败');
+				}
+			});
 		},
-		methods:{
-			reset_head_name:function(){
-				this.$router.push({path:'/set_name_head'});
+		methods: {
+			reset_head_name: function() {
+				this.$router.push({
+					path: '/set_name_head'
+				});
 			}
 		}
 	}
