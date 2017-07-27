@@ -14,6 +14,7 @@
 				</div>
 				<div class="name">{{active.name}}</div>
 				<div class="content">{{active.contents}}</div>
+				<address class="addr" v-if="active.address">{{active.address}}</address>
 				<address>{{active.send_time}}</address>
 			</li>
 		</ul>
@@ -36,13 +37,19 @@
 		created: function() {
 			document.title = '朋友圈'
 		},
+		computed: {
+			has_address: function() {
+//				if(active.address == '所在位置') {
+					return 1;
+//				}
+			}
+		},
 		mounted: function() {
 			this.$parent.footer = 0;
 			var that = this;
 			this.self_info.user = this.$cookie.get('user');
 			this.$http.get('http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/get_friend_actives.php?user=' + that.self_info.user).then((response) => {
 				var get_data = response.data;
-				console.log(get_data);
 				that.self_info.name = get_data[0];
 				that.self_info.header = get_data[1];
 				var new_arr = get_data.slice(2);
@@ -106,12 +113,25 @@
 	}
 	
 	address {
-		height: .5rem;
-		line-height: .5rem;
+		height: .3rem;
+		line-height: .3rem;
 		text-align: left;
 		width: 83%;
 		float: right;
 		font-size: .2rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		font-style: normal;
+		box-sizing: border-box;
+	}
+	
+	.addr {
+		font-size: .15rem;
+		color: #55A532;
+		background: url(../assets/images/address_green.png)left center no-repeat;
+		background-size:.15rem 65%;
+		padding-left: .2rem;
 	}
 	
 	.head_friends {
