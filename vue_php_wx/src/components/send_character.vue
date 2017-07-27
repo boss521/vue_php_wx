@@ -1,21 +1,25 @@
 <template>
 	<div class="send_character">
-		<textarea class="contents" v-model="contents" placeholder="输入想说的话。。"></textarea>
-		<hr />
-		<li class="circle_of_friends">
-			<span class="addr"></span>
-			<em>所在位置</em>
-		</li>
-		<li class="circle_of_friends">
-			<span class="earth"></span>
-			<em>谁可以看</em>
-		</li>
-		<hr />
-		<li class="circle_of_friends">
-			<span class="at"></span>
-			<em>提醒谁看</em>
-		</li>
-		<button @click="send_out">发表</button>
+		<div class="non_map" v-if="choose_map">
+			<textarea class="contents" v-model="contents" placeholder="输入想说的话。。"></textarea>
+			<hr />
+			<li class="circle_of_friends">
+				<span class="addr"></span>
+				<em @click="address">{{your_address}}</em>
+			</li>
+			<li class="circle_of_friends">
+				<span class="earth"></span>
+				<em>谁可以看</em>
+			</li>
+			<hr />
+			<li class="circle_of_friends">
+				<span class="at"></span>
+				<em>提醒谁看</em>
+			</li>
+			<button @click="send_out">发表</button>
+		</div>
+
+		<iframe v-else id="mapPage" width="100%" height="100%" frameborder=0 src="http://apis.map.qq.com/tools/locpicker?search=1&type=1&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp"></iframe>
 	</div>
 </template>
 
@@ -25,7 +29,9 @@
 		data() {
 			return {
 				contents: "",
-				user: ''
+				user: '',
+				choose_map: 1,
+				your_address: '所在位置'
 			}
 		},
 		created() {
@@ -38,14 +44,48 @@
 				if(this.contents == '' || this.contents == null) {
 					alert('不能发送空内容')
 				} else {
-					this.$http.get('http://192.168.1.100/dashboard/moniweixin/vue_php_wx/src/actions/send_character.php?contents=' + that.contents + '&user=' + that.user).then((response) => {
-						that.contents = '';
-						console.log(response.data);
-						that.$router.push('/friends');
-					}, (response) => {
-						alert('服务器请求失败');
+					if(this.your_address=='所在位置'){
+						this.your_address=null
+					}
+					$.ajax({
+						type: 'post',
+						url: "http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/send_character.php",
+						dataType: 'text',
+						data: {
+							"user": that.user,
+							"contents": that.contents,
+							"address": that.your_address
+						},
+						success: function(data) {
+							that.contents = '';
+							that.$router.push('/friends');
+						},
+						error: function() {
+							alert('服务器请求失败');
+						}
 					});
+
+					//vue的get
+					//this.$http.get('http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/send_character.php?contents=' + that.contents + '&user=' + that.user).then((response) => {
+					//that.contents = '';
+					//that.$router.push('/friends');
+					//}, (response) => {
+					//alert('服务器请求失败');
+					//});
 				}
+			},
+			address: function() {
+				this.choose_map = 0;
+				var that = this;
+				window.addEventListener('message', function(event) {
+					// 接收位置信息，用户选择确认位置点后选点组件会触发该事件，回传用户的位置信息
+					var loc = event.data;
+					that.choose_map = 1;
+					if(loc && loc.module == 'locationPicker') { //防止其他应用也会向该页面post信息，需判断module是否为'locationPicker'
+						//console.log('location', loc.poiaddress);
+						that.your_address = loc.poiaddress;
+					}
+				}, false);
 			}
 		}
 	}
@@ -53,7 +93,14 @@
 
 <style>
 	.send_character {
-		padding-bottom: 1.2rem;
+		height: 100%;
+		box-sizing: border-box;
+	}
+	/*地图相关*/
+	
+	#mapPage {
+		height: 100%;
+		width: 100%;
 	}
 	
 	.contents {
@@ -76,6 +123,9 @@
 		padding-right: .4rem;
 		background: url(../assets/images/more.jpg)4.9rem center no-repeat;
 		background-size: .17rem .28rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 	
 	hr {

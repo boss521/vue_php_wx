@@ -62,7 +62,7 @@ else {
 	$uploaddir_resize = "../assets/uploadImg_resize/";
 	$uploadfile_resize = $uploaddir_resize . $name;
 	
-	$retArray = array('ret_code' => $ret_code, 'upload_url' => 'http://192.168.1.100/dashboard/moniweixin/vue_php_wx/src/assets/'.$uploadfile, 'upload_resize_url' => 'http://192.168.1.100/dashboard/moniweixin/vue_php_wx/src/assets/'.$uploadfile_resize);
+	$retArray = array('ret_code' => $ret_code, 'upload_url' => 'http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/assets/'.$uploadfile, 'upload_resize_url' => 'http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/assets/'.$uploadfile_resize);
 	$retJson = json_encode($retArray);
 	echo $retJson;
 }
