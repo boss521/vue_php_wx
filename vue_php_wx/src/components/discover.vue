@@ -27,14 +27,14 @@
 			</li>
 			<li class="circle_of_friends">
 				<span id="red" class="iconfont">&#xe50c;</span>
-				<em>购物</em>
+				<a href="https://m.jd.com/"><em>购物</em></a>
 			</li>
 			<hr />
 			<li class="circle_of_friends">
 				<span>
 					<img src="../assets/images/discover_08.jpg" alt="">
 				</span>
-				<em>游戏</em>
+				<a href="http://app.xiaomi.com/home"><em>应用</em></a>
 			</li>
 			<li class="circle_of_friends">
 				<span id="font" class="iconfont">&#xe601;</span>
@@ -54,7 +54,7 @@
 		mounted: function() {
 			this.$parent.footer = 1;
 			this.$parent.inde = 3;
-//			调用手机陀螺仪
+			//调用手机陀螺仪
 			try {
 				var text = "";
 				window.addEventListener("deviceorientation", orientationHandler, false);
@@ -73,10 +73,10 @@
 		methods: {
 			saoyisao: function() {
 				wx.scanQRCode({
-					needResult: 1,
-					desc: 'scanQRCode desc',
+					needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+					scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
 					success: function(res) {
-						alert(JSON.stringify(res));
+						var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
 					}
 				});
 			}
@@ -89,9 +89,11 @@
 		background: #EFEFF5;
 		padding-bottom: 1.2rem;
 	}
-	#arrow{
+	
+	#arrow {
 		font-size: .2rem;
 	}
+	
 	hr {
 		width: 6.1rem;
 		float: right;
@@ -99,6 +101,7 @@
 	}
 	
 	em {
+		color: #000000;
 		display: block;
 		height: 100%;
 		width: 83.9%;
