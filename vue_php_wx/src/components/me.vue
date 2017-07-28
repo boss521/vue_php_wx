@@ -64,7 +64,7 @@
 			this.$parent.inde = 4;
 			$.ajax({
 				type: 'post',
-				url: "http://192.168.1.95/dashboard/moniweixin/vue_php_wx/src/actions/me.php",
+				url: "http://192.168.1.100/dashboard/moniweixin/vue_php_wx/src/actions/me.php",
 				dataType: 'text',
 				data: {
 					"user": that.user
