@@ -44,7 +44,7 @@
 					this.can_sub = 1;
 					$.ajax({
 						type: 'post',
-						url: "http://192.168.1.100/dashboard/moniweixin/vue_php_wx/src/actions/register.php",
+						url: "http://192.168.1.53/dashboard/moniweixin/vue_php_wx/src/actions/register.php",
 						data: {
 							"user": that.user,
 							"password": that.psw
@@ -64,7 +64,7 @@
 					/*
 					 * axios的post请求默认json格式，不知道怎么改
 					 * */
-					//this.$http.post('http://192.168.1.100/dashboard/moniweixin/vue_php_wx/src/actions/register.php', {
+					//this.$http.post('http://192.168.1.53/dashboard/moniweixin/vue_php_wx/src/actions/register.php', {
 					//	headers: {
 					//		'Content-Type': 'application/x-www-form-urlencoded'
 					//	},

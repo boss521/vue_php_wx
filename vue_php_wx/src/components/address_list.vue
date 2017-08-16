@@ -28,7 +28,7 @@
 			this.$parent.inde = 2;
 			var that = this;
 			var cook=this.$cookie.get('user');
-			this.$http.get('http://192.168.1.100/dashboard/moniweixin/vue_php_wx/src/actions/get_address_list.php?cook='+cook).then((response) => {
+			this.$http.get('http://192.168.1.53/dashboard/moniweixin/vue_php_wx/src/actions/get_address_list.php?cook='+cook).then((response) => {
 				var get_data = response.data;
 				that.infos = get_data;
 			}, (response) => {
@@ -47,7 +47,7 @@
 	.address_list {
 		width: 100%;
 		background: #ffffff;
-		padding-bottom: 1.2rem!important;
+		padding-bottom: .99rem!important;
 	}
 	
 	.nearlist .list {
@@ -85,6 +85,7 @@
 	}
 	#find{
 		width: 100%;
+		height: 0.4rem;
 		margin: .2rem 0 0 0;
 		box-sizing: border-box;
 		

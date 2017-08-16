@@ -83,17 +83,16 @@
 						'chooseImage',
 						'getNetworkType',
 						'scanQRCode'
-
 					] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 				});
 				wx.ready(function() {
-					wx.checkJsApi({
-						jsApiList: ['chooseImage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
-						success: function(res) {
-							// 以键值对的形式返回，可用的api值true，不可用为false
-							alert(res)
-						}
-					});
+//					wx.checkJsApi({
+//						jsApiList: ['chooseImage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+//						success: function(res) {
+//							// 以键值对的形式返回，可用的api值true，不可用为false
+//							alert(res)
+//						}
+//					});
 //					wx.scanQRCode({
 //						needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
 //						scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
@@ -110,12 +109,12 @@
 //							alert(1)
 //						}
 //					});
-//					wx.getNetworkType({
-//						success: function(res) {
-//							var networkType = res.networkType; // 返回网络类型2g，3g，4g，wifi
-//							alert('你现在用的是' + networkType)
-//						}
-//					});
+					wx.getNetworkType({
+						success: function(res) {
+							var networkType = res.networkType; // 返回网络类型2g，3g，4g，wifi
+							alert('你现在用的是' + networkType)
+						}
+					});
 
 				});
 				wx.error(function(res) {
@@ -139,7 +138,7 @@
 	hr {
 		width: 6.1rem;
 		float: right;
-		border: .05px solid #E5E5E5;
+		border: 1px solid #E5E5E5;
 	}
 	
 	em {
