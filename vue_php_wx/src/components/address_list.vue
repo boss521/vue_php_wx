@@ -88,6 +88,8 @@
 		height: 0.4rem;
 		margin: .2rem 0 0 0;
 		box-sizing: border-box;
+		border:1px solid #d7d7d7;
+		padding: .05rem;
 		
 	}
 	label{
