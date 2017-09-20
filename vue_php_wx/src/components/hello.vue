@@ -28,7 +28,7 @@
 					img_url: require("../assets/images/head1.jpg"),
 					name: '潘志豪',
 					summary: '我是潘志豪',
-					receipt_time: '2017/02/010'
+					receipt_time: '2017/02/10'
 				}, {
 					img_url: require("../assets/images/head6.jpg"),
 					name: '刘德华',
