@@ -1,7 +1,7 @@
 <template>
 	<div class="address_list">
 		<div class="search">
-			<input type="text" id="find" value="" placeholder="输入要添加的人"/><label for="" @click="search">搜索</label>
+			<input type="text" id="find" value="" placeholder="输入要添加的人"/><label for="find" @click="search">搜索</label>
 		</div>
 		<ul class="nearlist" v-for="info in infos">
 			<li class="list">
@@ -28,7 +28,7 @@
 			this.$parent.inde = 2;
 			var that = this;
 			var cook=this.$cookie.get('user');
-			this.$http.get('http://192.168.1.53/dashboard/moniweixin/vue_php_wx/src/actions/get_address_list.php?cook='+cook).then((response) => {
+			this.$http.get('http://192.168.1.75/dashboard/moniweixin/vue_php_wx/src/actions/get_address_list.php?cook='+cook).then((response) => {
 				var get_data = response.data;
 				that.infos = get_data;
 			}, (response) => {
@@ -90,6 +90,7 @@
 		box-sizing: border-box;
 		border:1px solid #d7d7d7;
 		padding: .05rem;
+		font-size: .2rem;
 		
 	}
 	label{

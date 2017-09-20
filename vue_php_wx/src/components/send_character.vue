@@ -49,7 +49,7 @@
 					}
 					$.ajax({
 						type: 'post',
-						url: "http://192.168.1.53/dashboard/moniweixin/vue_php_wx/src/actions/send_character.php",
+						url: "http://192.168.1.75/dashboard/moniweixin/vue_php_wx/src/actions/send_character.php",
 						dataType: 'text',
 						data: {
 							"user": that.user,
@@ -66,7 +66,7 @@
 					});
 
 					//vue的get
-					//this.$http.get('http://192.168.1.53/dashboard/moniweixin/vue_php_wx/src/actions/send_character.php?contents=' + that.contents + '&user=' + that.user).then((response) => {
+					//this.$http.get('http://192.168.1.75/dashboard/moniweixin/vue_php_wx/src/actions/send_character.php?contents=' + that.contents + '&user=' + that.user).then((response) => {
 					//that.contents = '';
 					//that.$router.push('/friends');
 					//}, (response) => {
@@ -111,6 +111,7 @@
 		padding: .2rem;
 		box-sizing: border-box;
 		resize: none;
+		font-size: .23rem;
 	}
 	
 	em {
@@ -175,5 +176,11 @@
 		text-align: center;
 		line-height: .87rem;
 		color: #10AEFF;
+	}
+	button{
+		height: .5rem;
+		width: 1rem;
+		/*border-radius: .1rem;*/
+		font-size: .2rem;
 	}
 </style>

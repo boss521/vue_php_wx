@@ -36,7 +36,10 @@
 		methods: {
 			register: function() {
 				var that = this;
-				var reg = new RegExp(/^[a-z0-9]+$/i)
+				var reg = new RegExp(/^[a-z0-9]+$/i);
+				if(this.can_sub == 0){
+					return false;
+				};
 				if((that.user == "" || that.user == null) || (that.psw == "" || that.psw == null)) {
 					alert("用户名或者密码不能为空");
 					return false;
@@ -46,7 +49,7 @@
 					this.can_sub = 1;
 					$.ajax({
 						type: 'post',
-						url: "http://192.168.1.53/dashboard/moniweixin/vue_php_wx/src/actions/login.php",
+						url: "http://192.168.1.75/dashboard/moniweixin/vue_php_wx/src/actions/login.php",
 						data: {
 							"user": that.user,
 							"password": that.psw
@@ -84,6 +87,7 @@
 <style scoped>
 	.login {
 		width: 100%;
+		height: 100%;
 		background: #FFFFFF;
 		box-sizing: border-box;
 		overflow: hidden;
@@ -104,9 +108,14 @@
 	#password {
 		border: 0;
 		height: 60%;
-		line-height: .8rem;
+		width: 45%;
+		line-height: .6rem;
 		border-bottom: 1px solid #dfdfdf;
 		vertical-align: bottom;
+		font-size: .22rem;
+		box-sizing: border-box;
+		padding: .1rem;
+		
 	}
 	
 	.register_btn {

@@ -16,7 +16,7 @@
 		return {
 			infos: [],
 			img_url: '',
-			head: "http://192.168.1.53/dashboard/moniweixin/vue_php_wx/src/assets/images/upload.png",
+			head: "http://192.168.1.75/dashboard/moniweixin/vue_php_wx/src/assets/images/upload.png",
 			yourName: ''
 		}
 	},
@@ -37,7 +37,7 @@
 			var form_data = new FormData();
 			form_data.append('filename', document.getElementById('upload_img').files[0]);
 			$.ajax({
-				url: 'http://192.168.1.53/dashboard/moniweixin/vue_php_wx/src/actions/upload_img.php',
+				url: 'http://192.168.1.75/dashboard/moniweixin/vue_php_wx/src/actions/upload_img.php',
 				type: 'post',
 				data: form_data,
 				dataType: 'json',
@@ -61,7 +61,7 @@
 			} else {
 				$.ajax({
 					type: 'post',
-					url: "http://192.168.1.53/dashboard/moniweixin/vue_php_wx/src/actions/set_name_head.php",
+					url: "http://192.168.1.75/dashboard/moniweixin/vue_php_wx/src/actions/set_name_head.php",
 					data: {
 						"name": that.yourName,
 						//"user": that.$route.query.user,
@@ -113,12 +113,16 @@
 	opacity: 1;
 	z-index: 1;
 }
-
+#name{
+	height: .4rem;
+	width: 3rem;
+}
 button {
 	height: .5rem;
 	width: 2rem;
 	display: block;
 	margin: 1rem auto;
+	font-size: .25rem;
 }
 
 label {

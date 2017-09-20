@@ -37,20 +37,41 @@
 				footer: 0
 			}
 		},
-		created:function() {
+		created: function() {
 			//rem布局
-			(function(doc, win) {
-				var docEl = doc.documentElement,
-					resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
-					recalc = function() {
-						var clientWidth = docEl.clientWidth;
-						if(!clientWidth) return;
-						docEl.style.fontSize = clientWidth / 6.4 + 'px';
-					};
-				if(!doc.addEventListener) return;
-				win.addEventListener(resizeEvt, recalc, false);
-				doc.addEventListener('DOMContentLoaded', recalc, false);
-			})(document, window);
+			function init() {
+				(function(doc, win) {
+					var docEl = doc.documentElement,
+						resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+						recalc = function() {
+							var clientWidth = docEl.clientWidth;
+							if(!clientWidth) return;
+							docEl.style.fontSize = clientWidth / 6.4 + 'px';
+						};
+					if(!doc.addEventListener) return;
+					win.addEventListener(resizeEvt, recalc, false);
+					doc.addEventListener('DOMContentLoaded', recalc, false);
+				})(document, window);
+			}
+
+			function calcViewPort() {
+				var dpr = 1 / window.devicePixelRatio;
+				document.getElementById("vp").content = 'initial-scale=' + dpr + ',width=device-width, maximum-scale=' + dpr + ', user-scalable=yes';
+			}
+			calcViewPort();
+			init();
+			window.addEventListener("orientationchange", function(e) {
+				setTimeout(init, 0);
+			}, false);
+			//重置alert
+			window.alert = function(name) {
+				var iframe = document.createElement("IFRAME");
+				iframe.style.display = "none";
+				iframe.setAttribute("src", 'data:text/plain,');
+				document.documentElement.appendChild(iframe);
+				window.frames[0].window.alert(name);
+				iframe.parentNode.removeChild(iframe);
+			}
 			//检测横竖屏
 			window.addEventListener('orientationchange', function(event) {
 				if(window.orientation == 180 || window.orientation == 0) {
@@ -83,6 +104,10 @@
 		margin: 0;
 		padding: 0;
 		font-family: "宋体";
+	}
+	
+	* {
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	}
 	
 	i,
