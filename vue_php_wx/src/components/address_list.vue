@@ -5,7 +5,7 @@
 		</div>
 		<ul class="nearlist" v-for="info in infos">
 			<li class="list">
-				<img class="head" :src="info.header" />
+				<img class="head" :src="info.headerImg" />
 				<div class="name_summary">{{info.name}}</div>
 			</li>
 		</ul>
@@ -28,8 +28,10 @@
 			this.$parent.inde = 2;
 			var that = this;
 			var cook=this.$cookie.get('user');
-			this.$http.get('http://192.168.1.75/dashboard/moniweixin/vue_php_wx/src/actions/get_address_list.php?cook='+cook).then((response) => {
+			this.$http.get('http://192.168.1.71/dashboard/weixinApp/vue_php_wx/src/actions/get_address_list.php?cook='+cook).then((response) => {
+				
 				var get_data = response.data;
+				console.log(get_data);
 				that.infos = get_data;
 			}, (response) => {
 				alert("获取数据失败")

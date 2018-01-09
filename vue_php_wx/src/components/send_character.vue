@@ -49,7 +49,7 @@
 					}
 					$.ajax({
 						type: 'post',
-						url: "http://192.168.1.75/dashboard/moniweixin/vue_php_wx/src/actions/send_character.php",
+						url: "http://192.168.1.71/dashboard/weixinApp/vue_php_wx/src/actions/send_character.php",
 						dataType: 'text',
 						data: {
 							"user": that.user,
@@ -66,7 +66,7 @@
 					});
 
 					//vue的get
-					//this.$http.get('http://192.168.1.75/dashboard/moniweixin/vue_php_wx/src/actions/send_character.php?contents=' + that.contents + '&user=' + that.user).then((response) => {
+					//this.$http.get('http://192.168.1.71/dashboard/weixinApp/vue_php_wx/src/actions/send_character.php?contents=' + that.contents + '&user=' + that.user).then((response) => {
 					//that.contents = '';
 					//that.$router.push('/friends');
 					//}, (response) => {

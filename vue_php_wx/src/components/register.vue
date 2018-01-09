@@ -24,17 +24,30 @@
 			document.title = '注册'
 		},
 		computed: {
-			can_sub: function() {
-				if(this.user != '' && this.psw != '') {
-					return 1;
+			can_sub: {
+				get: function() {
+					if(this.user != '' && this.psw != '') {
+						return 1;
+					} else {
+						return 0;
+					}
+				},
+				set: function() {
+					if(this.user != '' && this.psw != '') {
+						return;
+					} else {
+						return 0;
+					}
 				}
-				return 0;
 			}
 		},
 		methods: {
 			register: function() {
 				var that = this;
-				var reg = new RegExp(/^[a-z0-9]+$/i)
+				var reg = new RegExp(/^[a-z0-9]+$/i);
+				if(this.can_sub == 0) {
+					return false;
+				};
 				if((that.user == "" || that.user == null) || (that.psw == "" || that.psw == null)) {
 					alert("用户名或者密码不能为空");
 					return false;
@@ -44,14 +57,14 @@
 					this.can_sub = 1;
 					$.ajax({
 						type: 'post',
-						url: "http://192.168.1.75/dashboard/moniweixin/vue_php_wx/src/actions/register.php",
+						url: "http://192.168.1.71/dashboard/weixinApp/vue_php_wx/src/actions/register.php",
 						data: {
 							"user": that.user,
 							"password": that.psw
 						},
 						success: function(d) {
 							console.log(d);
-							if(d*1 == 1) {
+							if(d * 1 == 1) {
 								alert('该用户已经存在！')
 							} else {
 								alert("注册成功");
@@ -64,7 +77,7 @@
 					/*
 					 * axios的post请求默认json格式，不知道怎么改
 					 * */
-					//this.$http.post('http://192.168.1.75/dashboard/moniweixin/vue_php_wx/src/actions/register.php', {
+					//this.$http.post('http://192.168.1.71/dashboard/weixinApp/vue_php_wx/src/actions/register.php', {
 					//	headers: {
 					//		'Content-Type': 'application/x-www-form-urlencoded'
 					//	},
@@ -113,9 +126,13 @@
 	#password {
 		border: 0;
 		height: 60%;
-		line-height: .8rem;
+		width: 45%;
+		line-height: .6rem;
 		border-bottom: 1px solid #dfdfdf;
 		vertical-align: bottom;
+		font-size: .22rem;
+		box-sizing: border-box;
+		padding: .1rem;
 	}
 	
 	.register_btn {

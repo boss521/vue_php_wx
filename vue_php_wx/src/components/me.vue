@@ -3,7 +3,7 @@
 		<ul class="lists">
 			<li class="circle_of_friends">
 				<span class="set_head_box">
-					<img id="set_head" :src="data.header" alt="">
+					<img id="set_head" :src="data.headerImg" alt="">
 				</span>
 				<em class="wx_num" @click="reset_head_name">
 					<strong>{{data.name}}</strong>
@@ -64,7 +64,7 @@
 			this.$parent.inde = 4;
 			$.ajax({
 				type: 'post',
-				url: "http://192.168.1.75/dashboard/moniweixin/vue_php_wx/src/actions/me.php",
+				url: "http://192.168.1.71/dashboard/weixinApp/vue_php_wx/src/actions/me.php",
 				dataType: 'text',
 				data: {
 					"user": that.user

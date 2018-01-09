@@ -25,11 +25,20 @@
 			document.title = '登录'
 		},
 		computed: {
-			can_sub: function() {
-				if(this.user != '' && this.psw != '') {
-					return 1;
-				} else {
-					return 0;
+			can_sub: {
+				get: function() {
+					if(this.user != '' && this.psw != '') {
+						return 1;
+					} else {
+						return 0;
+					}
+				},
+				set: function() {
+					if(this.user != '' && this.psw != '') {
+						return;
+					} else {
+						return 0;
+					}
 				}
 			}
 		},
@@ -37,7 +46,7 @@
 			register: function() {
 				var that = this;
 				var reg = new RegExp(/^[a-z0-9]+$/i);
-				if(this.can_sub == 0){
+				if(this.can_sub == 0) {
 					return false;
 				};
 				if((that.user == "" || that.user == null) || (that.psw == "" || that.psw == null)) {
@@ -49,7 +58,8 @@
 					this.can_sub = 1;
 					$.ajax({
 						type: 'post',
-						url: "http://192.168.1.75/dashboard/moniweixin/vue_php_wx/src/actions/login.php",
+						//dataType: "JSON",
+						url: "http://192.168.1.71/dashboard/weixinApp/vue_php_wx/src/actions/login.php",
 						data: {
 							"user": that.user,
 							"password": that.psw
@@ -57,18 +67,18 @@
 						success: function(d) {
 							var data = JSON.parse(d);
 							console.log(data);
-							if(d == 0) {
+							if(data == 0) {
 								alert("账号或者密码错误！");
 							} else if(data[0].userid == that.user && data[0].password == that.psw) {
 								that.$cookie.set('user', that.user, 5);
 								that.$cookie.set('psw', that.psw, 5);
-								if((data[0].name == '') || (data[0].name == null) || (data[0].header == '') || (data[0].header == null)) {
+								if((data[0].name == '') || (data[0].name == null) || (data[0].headerImg == '') || (data[0].headerImg == null)) {
 									that.$router.push({
 										path: "/set_name_head"
-										//										query: {
-										//											"user": that.user,
-										//											"password": that.psw
-										//										}
+										//query: {
+										//	"user": that.user,
+										//	"password": that.psw
+										//}
 									})
 								} else {
 									that.$router.push({
@@ -115,7 +125,6 @@
 		font-size: .22rem;
 		box-sizing: border-box;
 		padding: .1rem;
-		
 	}
 	
 	.register_btn {

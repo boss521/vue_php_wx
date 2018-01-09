@@ -4,7 +4,7 @@
 $user = $_POST["user"];
 $psw = $_POST["password"];
 if (!empty($user)) {
-	$selectdb = "SELECT * FROM user WHERE userid = '{$user}' and password = '{$psw}'";
+	$selectdb = "SELECT userid,password,headerImg,name FROM user WHERE userid = '{$user}' and password = '{$psw}'";
 	$result = $conn -> query($selectdb);
 	$ss = $result -> fetch_array();
 	if ($result -> num_rows > 0) {

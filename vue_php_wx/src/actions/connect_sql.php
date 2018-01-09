@@ -9,8 +9,8 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) == 'OPTIONS') {
 //	创建连接
 $localhost = 'localhost';
 $root = 'root';
-$password = '0404';
-$mysql = 'weixin';
+$password = '';
+$mysql = 'sunyuan';
 @$conn = new mysqli($localhost, $root, $password, $mysql);
 //	检测链接
 if ($conn -> connect_error) {
