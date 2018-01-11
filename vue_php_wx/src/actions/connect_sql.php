@@ -12,6 +12,8 @@ $root = 'root';
 $password = '';
 $mysql = 'sunyuan';
 @$conn = new mysqli($localhost, $root, $password, $mysql);
+$conn->query("set character set 'utf8'");
+$conn->query("set names 'utf8'");
 //	检测链接
 if ($conn -> connect_error) {
 	die('连接数据库失败！');

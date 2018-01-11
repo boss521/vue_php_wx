@@ -7,7 +7,7 @@
 				<span class="addr"></span>
 				<em @click="address">{{your_address}}</em>
 			</li>
-			<li class="circle_of_friends">
+			<!--<li class="circle_of_friends">
 				<span class="earth"></span>
 				<em>谁可以看</em>
 			</li>
@@ -15,7 +15,7 @@
 			<li class="circle_of_friends">
 				<span class="at"></span>
 				<em>提醒谁看</em>
-			</li>
+			</li>-->
 			<button @click="send_out">发表</button>
 		</div>
 
@@ -42,10 +42,10 @@
 				var that = this;
 				this.user = this.$cookie.get('user');
 				if(this.contents == '' || this.contents == null) {
-					alert('不能发送空内容')
+					alert('不能发送空内容');
 				} else {
 					if(this.your_address=='所在位置'){
-						this.your_address=null
+						this.your_address=null;
 					}
 					$.ajax({
 						type: 'post',

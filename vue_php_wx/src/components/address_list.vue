@@ -4,7 +4,7 @@
 			<input type="text" id="find" value="" placeholder="输入要添加的人"/><label for="find" @click="search">搜索</label>
 		</div>
 		<ul class="nearlist" v-for="info in infos">
-			<li class="list">
+			<li class="list" @click="begin_dialogo">
 				<img class="head" :src="info.headerImg" />
 				<div class="name_summary">{{info.name}}</div>
 			</li>
@@ -31,7 +31,7 @@
 			this.$http.get('http://192.168.1.71/dashboard/weixinApp/vue_php_wx/src/actions/get_address_list.php?cook='+cook).then((response) => {
 				
 				var get_data = response.data;
-				console.log(get_data);
+//				console.log(get_data);
 				that.infos = get_data;
 			}, (response) => {
 				alert("获取数据失败")
@@ -40,6 +40,11 @@
 		methods:{
 			search:function(){
 				alert('未找到该用户')
+			},
+			begin_dialogo:function(){
+				this.$router.push({
+					path:'/dialogue'
+				});
 			}
 		}
 	}

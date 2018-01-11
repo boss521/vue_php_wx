@@ -9,6 +9,8 @@ if ($result -> num_rows > 0) {
 	while ($row = $result -> fetch_array()) {
 		$give_data[] = $row;
 	}
+} else {
+	$give_data[] = ["好友暂无动态"];
 }
 $name = $name -> fetch_row();
 echo json_encode(array_merge($name, $give_data));

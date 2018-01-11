@@ -5,7 +5,7 @@
 			<input type="file" name="" @change="change" id="upload_img" value="" />
 			<img class="mask" id="mask" :src="headerImg" />
 		</div>
-		<label for="name">名字</label><input type="text" v-model="yourName" name="name" id="name" value="" />
+		<label for="name">昵称</label><input type="text" v-model="yourName" name="name" id="name" value="" />
 		<button @click="sub">提交</button>
 	</div>
 </template>
@@ -20,6 +20,9 @@
 				headerImg: "http://192.168.1.71/dashboard/weixinApp/vue_php_wx/src/assets/images/upload.png",
 				yourName: ''
 			}
+		},
+		created: function() {
+			document.title = '修改头像和昵称';
 		},
 		mounted: function() {
 			this.$parent.footer = 0;
@@ -45,8 +48,7 @@
 					contentType: false, //必须false才会自动加上正确的Content-Type
 					processData: false, //必须false才会避开jQuery对 formdata 的默认处理, XMLHttpRequest会对 formdata 进行正确的处理
 					success: function(data) { //返回的数据需要包括url
-						//						console.log(data);
-
+						//console.log(data);
 						console.log(data);
 						that.headerImg = data.upload_resize_url;
 					},

@@ -9,6 +9,7 @@ import me from '@/components/me'
 import register from '@/components/register'
 import login from '@/components/login'
 import set_name_head from '@/components/set_name_head'
+import dialogue from '@/components/dialogue'
 
 Vue.use(Router)
 
@@ -55,6 +56,11 @@ export default new Router({
 			path: '/me',
 			name: 'me',
 			component: me
+		},
+		{
+			path: '/dialogue',
+			name: 'dialogue',
+			component: dialogue
 		}
 	]
 })
