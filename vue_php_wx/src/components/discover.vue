@@ -7,16 +7,16 @@
 				</span>
 				<em>朋友圈</em>
 			</router-link>
-			<li class="circle_of_friends">
+			<li class="circle_of_friends" @click="saoyisao">
 				<span id="font" class="iconfont">&#xe6d8;</span>
-				<em @click="saoyisao">扫一扫</em>
+				<em>扫一扫</em>
 			</li>
 			<hr />
-			<li class="circle_of_friends">
+			<li class="circle_of_friends" @click="yaoyiyao">
 				<span id="font" class="iconfont">&#xe507;</span>
 				<em>摇一摇</em>
 			</li>
-			<li class="circle_of_friends">
+			<li class="circle_of_friends" @click="near_person">
 				<span id="font" class="iconfont">&#xe505;</span>
 				<em>附近的人</em>
 			</li>
@@ -36,7 +36,7 @@
 				</span>
 				<a href="http://app.xiaomi.com/home"><em>应用</em></a>
 			</li>
-			<li class="circle_of_friends">
+			<li class="circle_of_friends" @click="xiaochengxu">
 				<span id="font" class="iconfont">&#xe601;</span>
 				<em>小程序</em>
 			</li>
@@ -55,25 +55,66 @@
 			this.$parent.footer = 1;
 			this.$parent.inde = 3;
 			//调用手机陀螺仪
-			/*try {
-				var text = "";
-				window.addEventListener("deviceorientation", orientationHandler, false);
-
-				function orientationHandler(event) {
-					text = ""
-					var arrow = document.getElementById("arrow");
-					text += "左右旋转：rotate alpha{" + Math.round(event.alpha) + "deg)<p>";
-					text += "前后旋转：rotate beta{" + Math.round(event.beta) + "deg)<p>";
-					text += "扭转设备：rotate gamma{" + Math.round(event.gamma) + "deg)<p>";
-					arrow.innerHTML = text;
-				}
-			} catch(e) {
-				$("#arrow").html(e.message)
-			}*/
+			//			try {
+			//				var text = "";
+			//				window.addEventListener("deviceorientation", orientationHandler, false);
+			//
+			//				function orientationHandler(event) {
+			//					text = ""
+			//					var arrow = document.getElementById("arrow");
+			//					text += "左右旋转：rotate alpha{" + Math.round(event.alpha) + "deg)<p>";
+			//					text += "前后旋转：rotate beta{" + Math.round(event.beta) + "deg)<p>";
+			//					text += "扭转设备：rotate gamma{" + Math.round(event.gamma) + "deg)<p>";
+			//					arrow.innerHTML = text;
+			//				}
+			//			} catch(e) {
+			//				$("#arrow").html(e.message)
+			//			}
 		},
 		methods: {
 			saoyisao: function() {
+				wx.scanQRCode({
+					desc: 'scanQRCode desc',
+					needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+					scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+					success: function(res) {
+						// 回调
+					},
+					error: function(res) {
+						if(res.errMsg.indexOf('function_not_exist') > 0) {
+							alert('版本过低请升级')
+						}
+					}
+				});
+			},
+			yaoyiyao: function() {
+				wx.scanQRCode({
+					desc: 'scanQRCode desc',
+					needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+					scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+					success: function(res) {
+						// 回调
+					},
+					error: function(res) {
+						if(res.errMsg.indexOf('function_not_exist') > 0) {
+							alert('版本过低请升级')
+						}
+					}
+				});
 
+			},
+			xiaochengxu: function() {
+				location.href = "http://s0.erdianzhang.com/room.html?key=aEJboFzGT4JRQ5qBAgzuzw==&ver=328";
+			},
+			near_person: function() {
+				wx.openLocation({
+					latitude: 0, // 纬度，浮点数，范围为90 ~ -90
+					longitude: 0, // 经度，浮点数，范围为180 ~ -180。
+					name: '', // 位置名
+					address: '', // 地址详情说明
+					scale: 1, // 地图缩放级别,整形值,范围从1~28。默认为最大
+					infoUrl: '' // 在查看位置界面底部显示的超链接,可点击跳转
+				});
 			}
 		}
 	}
